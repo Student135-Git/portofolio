@@ -1,37 +1,75 @@
-/* Wallpaper background */
+/* -----------------------------
+   Wallpaper background (desktop)
+------------------------------ */
 body{
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  transition: background-image 350ms ease;
 }
 
-/* Window overlay */
+/* Soft tint overlay (OS vibe) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,0.45), transparent 55%),
+    radial-gradient(900px 600px at 85% 35%, rgba(0,140,255,0.22), transparent 60%),
+    rgba(255,255,255,0.04);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Make sure your UI sits above the overlay */
+.desktop, .topbar, .right-icons, .dock-wrap, .overlay{
+  position: relative;
+  z-index: 1;
+}
+
+/* -----------------------------
+   Modal overlay
+------------------------------ */
 .overlay{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.18);
+  background: rgba(0,0,0,0.10); /* softer like the reference site */
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 50;
 }
-
 .overlay.show{ display: flex; }
 
-/* Wallpaper window */
+/* -----------------------------
+   Wallpaper window (glass)
+------------------------------ */
 .window{
-  width: min(980px, 92vw);
-  height: min(650px, 82vh);
-  background: rgba(236, 248, 255, 0.92);
-  backdrop-filter: blur(12px);
-  border-radius: 22px;
-  box-shadow: 0 30px 90px rgba(0,0,0,0.25);
+  width: min(1040px, 94vw);
+  height: min(720px, 86vh);
+
+  border-radius: 26px;
   overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.08);
+
+  background: linear-gradient(180deg,
+    rgba(220, 245, 255, 0.86) 0%,
+    rgba(235, 250, 255, 0.78) 55%,
+    rgba(255, 255, 255, 0.72) 100%
+  );
+
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow:
+    0 35px 110px rgba(0,0,0,0.22),
+    0 2px 0 rgba(255,255,255,0.35) inset;
   position: relative;
 }
 
-/* Window title bar (mac-like) */
+/* -----------------------------
+   Window title bar (mac-like)
+------------------------------ */
 .window-bar{
   height: 44px;
   display: flex;
@@ -45,6 +83,7 @@ body{
   gap: 8px;
   align-items: center;
 }
+
 .dot{
   width: 12px;
   height: 12px;
@@ -62,10 +101,22 @@ body{
   font-size: 14px;
 }
 
+/* -----------------------------
+   Window content + scrollbar
+------------------------------ */
 .window-content{
   padding: 18px;
   height: calc(100% - 44px);
   overflow: auto;
+}
+
+/* Optional: nicer scrollbar (Chrome/Edge/Safari) */
+.window-content::-webkit-scrollbar{ width: 10px; }
+.window-content::-webkit-scrollbar-track{ background: transparent; }
+.window-content::-webkit-scrollbar-thumb{
+  background: rgba(0,0,0,0.18);
+  border-radius: 999px;
+  border: 3px solid rgba(255,255,255,0.55);
 }
 
 .window-content h1{
@@ -74,87 +125,63 @@ body{
   letter-spacing: -0.02em;
 }
 
-/* Wallpaper grid */
+/* -----------------------------
+   Wallpaper grid (cards)
+------------------------------ */
 .wallpaper-grid{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 22px;
 }
 
 .wallpaper-item{
-  border-radius: 16px;
+  position: relative;
+  border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
-  background: #fff;
+
+  background: rgba(255,255,255,0.55);
   border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.10);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+
+  transform: translateZ(0);
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
 }
 
 .wallpaper-item:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 16px 35px rgba(0,0,0,0.14);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px rgba(0,0,0,0.14);
+  filter: saturate(1.05);
 }
 
 .wallpaper-item img{
   width: 100%;
-  height: 210px;
+  height: 240px;
   object-fit: cover;
   display: block;
 }
 
 /* Selected state */
 .wallpaper-item.selected{
-  outline: 4px solid rgba(0, 122, 255, 0.35);
+  outline: 4px solid rgba(0, 120, 255, 0.35);
+  outline-offset: 2px;
 }
 
-/* Smooth wallpaper switching */
-body{
-  transition: background-image 350ms ease;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
+/* (Optional) Selected check badge
+   If you add: <span class="check">✓</span> inside wallpaper-item */
+.wallpaper-item .check{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
 
-/* Optional: soft tint overlay like many OS themes */
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,0.45), transparent 55%),
-              radial-gradient(900px 600px at 85% 35%, rgba(0,140,255,0.22), transparent 60%),
-              rgba(255,255,255,0.04);
-  pointer-events: none;
-  z-index: 0;
-}
+  background: rgba(0,122,255,0.92);
+  color: #fff;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.18);
 
-.desktop, .topbar, .right-icons, .dock-wrap, .overlay{
-  position: relative;
-  z-index: 1;
-}
-
-/* Smooth wallpaper switching */
-body{
-  transition: background-image 350ms ease;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-/* Optional: soft tint overlay like many OS themes */
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,0.45), transparent 55%),
-              radial-gradient(900px 600px at 85% 35%, rgba(0,140,255,0.22), transparent 60%),
-              rgba(255,255,255,0.04);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.desktop, .topbar, .right-icons, .dock-wrap, .overlay{
-  position: relative;
-  z-index: 1;
-}
-
+  opacity
