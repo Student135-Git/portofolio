@@ -1,321 +1,270 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name — Portfolio</title>
-  <style>
-    :root{
-      --bg: #f5f5f5;
-      --text: #111;
-      --muted: #666;
-      --bar: rgba(255,255,255,0.85);
-      --shadow: 0 10px 30px rgba(0,0,0,0.12);
-      --radius: 18px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Name — Portfolio</title>
 
-    * { box-sizing: border-box; }
-    body{
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Desktop area */
-    .desktop{
-      position: relative;
-      min-height: 100vh;
-      padding: 72px 24px 120px; /* top bar + dock space */
-    }
-
-    /* Top Menu Bar */
-    .topbar{
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 18px;
-      background: var(--bar);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      z-index: 10;
-    }
-
-    .topbar-left{
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 18px;
-    }
-
-  .apple{
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
+<style>
+/* ---------------- Base ---------------- */
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  min-height:100vh;
+  background-image:url("Image/w1.jpg");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  transition: background-image 350ms ease;
 }
 
-.apple img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+/* soft OS overlay */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.45), transparent 55%),
+    radial-gradient(900px 600px at 85% 35%, rgba(0,140,255,.22), transparent 60%);
+  pointer-events:none;
+  z-index:0;
 }
 
-    .menu a{
-      text-decoration: none;
-      color: var(--text);
-      padding: 8px 10px;
-      border-radius: 10px;
-    }
-    .menu a:hover{
-      background: rgba(0,0,0,0.06);
-    }
+.desktop,.topbar,.dock-wrap,.right-icons,.overlay{
+  position:relative;
+  z-index:1;
+}
 
-    .topbar-right{
-      font-variant-numeric: tabular-nums;
-      color: var(--text);
-    }
+/* ---------------- Top Bar ---------------- */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:56px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 18px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
 
-    /* Right-side icons */
-    .right-icons{
-      position: fixed;
-      top: 86px;
-      right: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      z-index: 5;
-    }
+.topbar-left{ display:flex; gap:16px; align-items:center; }
+.menu a{
+  text-decoration:none;
+  color:#111;
+  padding:8px 10px;
+  border-radius:10px;
+}
+.menu a:hover{ background:rgba(0,0,0,.06); }
 
-    .icon{
-      width: 62px;
-      height: 62px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .icon:hover{
-      transform: translateY(-3px);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.16);
-    }
+.apple{ width:28px;height:28px; }
+.apple img{ width:100%;height:100%;object-fit:contain; }
 
-    .icon img{
-      width: 34px;
-      height: 34px;
-      object-fit: contain;
-    }
+/* ---------------- Desktop ---------------- */
+.desktop{ padding:80px 24px 120px; }
 
-    /* Center intro card (optional) */
-    .intro{
-      max-width: 760px;
-      margin: 0 auto;
-      margin-top: 40px;
-      padding: 26px;
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: var(--shadow);
-    }
-    .intro h1{
-      margin: 0 0 8px;
-      font-size: 32px;
-    }
-    .intro p{
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
-    }
+/* ---------------- Right Icons ---------------- */
+.right-icons{
+  position:fixed;
+  top:90px;
+  right:24px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.icon{
+  width:60px;height:60px;
+  background:#fff;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  transition:.15s;
+}
+.icon:hover{ transform:translateY(-3px); }
 
-    /* Dock */
-    .dock-wrap{
-      position: fixed;
-      left: 0; right: 0;
-      bottom: 18px;
-      display: flex;
-      justify-content: center;
-      z-index: 10;
-      pointer-events: none; /* allow clicks only on dock itself */
-    }
+/* ---------------- Dock ---------------- */
+.dock-wrap{
+  position:fixed;
+  left:0;right:0;bottom:18px;
+  display:flex;
+  justify-content:center;
+}
+.dock{
+  display:flex;
+  gap:14px;
+  padding:14px 18px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(12px);
+  border-radius:22px;
+  box-shadow:0 18px 50px rgba(0,0,0,.18);
+}
+.dock a{
+  width:54px;height:54px;
+  background:#fff;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  transition:.15s;
+}
+.dock a:hover{ transform:translateY(-6px) scale(1.06); }
 
-    .dock{
-      pointer-events: auto;
-      display: flex;
-      gap: 14px;
-      padding: 14px 18px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
-      align-items: end;
-    }
+/* ---------------- Wallpaper Window ---------------- */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.1);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.overlay.show{ display:flex; }
 
-    .dock a{
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: #fff;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-      transition: transform 0.15s ease;
-    }
-    .dock a:hover{
-      transform: translateY(-6px) scale(1.06);
-    }
-    .dock a img{
-      width: 32px;
-      height: 32px;
-    }
+.window{
+  width:min(1000px,94vw);
+  height:min(700px,86vh);
+  border-radius:26px;
+  overflow:hidden;
+  background:linear-gradient(
+    180deg,
+    rgba(220,245,255,.86),
+    rgba(255,255,255,.75)
+  );
+  backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 35px 110px rgba(0,0,0,.25);
+}
 
-    /* Small screens */
-    @media (max-width: 640px){
-      .right-icons{ right: 12px; }
-      .icon{ width: 54px; height: 54px; border-radius: 14px; }
-      .dock a{ width: 48px; height: 48px; }
-    }
-  </style>
+.window-bar{
+  height:44px;
+  display:flex;
+  align-items:center;
+  padding:0 14px;
+}
+.window-dots{ display:flex; gap:8px; }
+.dot{
+  width:12px;height:12px;border-radius:50%;
+}
+.red{ background:#ff5f57; }
+.yellow{ background:#febc2e; }
+.green{ background:#28c840; }
+
+.window-content{
+  padding:18px;
+  height:calc(100% - 44px);
+  overflow:auto;
+}
+.window-content h1{
+  font-size:44px;
+  margin:0 0 16px;
+}
+
+/* wallpaper grid */
+.wallpaper-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+.wallpaper-item{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,.12);
+  transition:.15s;
+}
+.wallpaper-item:hover{ transform:translateY(-4px); }
+.wallpaper-item img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+}
+.wallpaper-item.selected{
+  outline:4px solid rgba(0,120,255,.35);
+}
+
+/* ---------------- Responsive ---------------- */
+@media(max-width:720px){
+  .wallpaper-grid{ grid-template-columns:1fr; }
+}
+</style>
 </head>
+
 <body>
-  <!-- Top Bar -->
-  <header class="topbar">
-    <div class="topbar-left">
-     <div class="apple">
-  <img src="Image/AppleLogo.png" alt="Apple Logo">
-</div>
 
-      <nav class="menu">
-        <a href="#wallpaper">Wallpaper</a>
-        <a href="#more">More</a>
-      </nav>
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="apple">
+      <img src="Image/AppleLogo.png" alt="Apple">
     </div>
-    <div class="topbar-right" id="clock">--:--</div>
-  </header>
-
-  <!-- Right icons -->
-  <aside class="right-icons">
-    <!-- Replace links + icons with your own -->
-    <a class="icon" href="#about" title="About">
-      <img alt="About" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/265f.svg">
-    </a>
-    <a class="icon" href="https://www.linkedin.com" target="_blank" rel="noreferrer" title="LinkedIn">
-      <img alt="LinkedIn" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg">
-    </a>
-    <a class="icon" href="https://github.com" target="_blank" rel="noreferrer" title="GitHub">
-      <img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg">
-    </a>
-  </aside>
-
-  <!-- Desktop content -->
-  <main class="desktop">
-    <section class="intro" id="about">
-      <h1>Your Name</h1>
-      <p>
-        Short intro: what you do (e.g., Frontend Developer / Student / Designer).
-        Add a sentence about your focus, tools, and what you’re looking for.
-      </p>
-    </section>
-
-    <!-- Add sections -->
-    <section class="intro" id="projects" style="margin-top:18px;">
-      <h1>Projects</h1>
-      <p>Add your projects here (cards, screenshots, links).</p>
-    </section>
-
-    <section class="intro" id="contact" style="margin-top:18px;">
-      <h1>Contact</h1>
-      <p>Email: you@example.com • Location • Anything else</p>
-    </section>
-  </main>
-
-  <!-- Dock -->
-  <div class="dock-wrap">
-    <nav class="dock" aria-label="Dock">
-      <!-- Replace with your pages -->
-      <a href="#about" title="About Me">
-        <img alt="About Me" src="Image/FinderOs.png" alt="About Me">
-      <a href="#projects" title="Projects">
-        <img alt="Projects" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">
-      </a>
-      <a href="#contact" title="Contact">
-        <img alt="Contact" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2709.svg">
-      </a>
-      <a href="https://github.com" target="_blank" rel="noreferrer" title="GitHub">
-        <img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg">
-      </a>
+    <nav class="menu">
+      <a href="#" id="openWallpaper">Wallpaper</a>
+      <a href="#">More</a>
     </nav>
   </div>
+  <div id="clock"></div>
+</header>
 
-<script>
-  function updateClock(){
-    const el = document.getElementById('clock');
-    const now = new Date();
+<div class="desktop"></div>
 
-    const time = now.toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+<div class="dock-wrap">
+  <nav class="dock">
+    <a href="#"><img src="Image/FinderOs.png" width="32"></a>
+    <a href="#"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg" width="32"></a>
+  </nav>
+</div>
 
-    const date = now.toLocaleDateString([], {
-      month: 'short',
-      day: '2-digit'
-    });
-
-    el.textContent = `${time} ${date}`;
-  }
-
-  updateClock();
-  setInterval(updateClock, 1000 * 10);
-</script>
-<!-- Wallpaper chooser modal -->
-<div class="overlay" id="wallpaperOverlay" aria-hidden="true">
-  <div class="window" role="dialog" aria-label="Wallpaper chooser">
+<!-- Wallpaper window -->
+<div class="overlay" id="wallpaperOverlay">
+  <div class="window">
     <div class="window-bar">
       <div class="window-dots">
-        <span class="dot red" id="closeWallpaper" title="Close"></span>
-        <span class="dot yellow" title="Minimize (fake)"></span>
-        <span class="dot green" title="Fullscreen (fake)"></span>
+        <span class="dot red" id="closeWallpaper"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
       </div>
-      <div class="window-title">Wallpaper</div>
-      <div style="width:48px;"></div>
     </div>
 
     <div class="window-content">
       <h1>Wallpaper</h1>
-
       <div class="wallpaper-grid" id="wallpaperGrid">
-        <!-- Replace these with your own images -->
-        <div class="wallpaper-item" data-wall="portofolio/image/wallpapers/w1.jpg">
-          <img src="Image/w1.jpg" alt="Wallpaper 1">
-        </div>
-        <div class="wallpaper-item" data-wall="portofolio/image/wallpapers/w2.jpg">
-          <img src="Image/w2.jpg" alt="Wallpaper 2">
-        </div>
-        <div class="wallpaper-item" data-wall="portofolio/image/wallpapers/w3.jpg">
-          <img src="Image/w3.jpg" alt="Wallpaper 3">
-        </div>
-        <div class="wallpaper-item" data-wall="portofolio/image/wallpapers/w4.jpg">
-          <img src="Image/w4.jpg" alt="Wallpaper 4">
-        </div>
-        <div class="wallpaper-item" data-wall="portofolio/image/wallpapers/w5.jpg">
-          <img src="Image/w5.jpg" alt="Wallpaper 5">
-        </div>
-        <div class="wallpaper-item" data-wall="portofolio/image/wallpapers/w6.jpg">
-          <img src="Image/w6.jpg" alt="Wallpaper 6">
-        </div>
+        <div class="wallpaper-item" data-wall="Image/w1.jpg"><img src="Image/w1.jpg"></div>
+        <div class="wallpaper-item" data-wall="Image/w2.jpg"><img src="Image/w2.jpg"></div>
+        <div class="wallpaper-item" data-wall="Image/w3.jpg"><img src="Image/w3.jpg"></div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+/* clock */
+function updateClock(){
+  const now=new Date();
+  const time=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  const date=now.toLocaleDateString([], {month:'short',day:'2-digit'});
+  clock.textContent=`${time} ${date}`;
+}
+updateClock();setInterval(updateClock,60000);
+
+/* wallpaper logic */
+const overlay=document.getElementById('wallpaperOverlay');
+openWallpaper.onclick=e=>{e.preventDefault();overlay.classList.add('show');}
+closeWallpaper.onclick=()=>overlay.classList.remove('show');
+
+wallpaperGrid.onclick=e=>{
+  const item=e.target.closest('.wallpaper-item');
+  if(!item)return;
+  const url=item.dataset.wall;
+  document.body.style.backgroundImage=`url("${url}")`;
+  localStorage.setItem('wallpaper',url);
+  document.querySelectorAll('.wallpaper-item')
+    .forEach(i=>i.classList.toggle('selected',i===item));
+};
+
+const saved=localStorage.getItem('wallpaper');
+if(saved) document.body.style.backgroundImage=`url("${saved}")`;
+</script>
 
 </body>
 </html>
