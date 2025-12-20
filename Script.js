@@ -1,8 +1,3 @@
-const date = now.toLocaleDateString('en-US', {
-  month: 'short',
-  day: '2-digit'
-});
-
 <script>
   // --- Clock (keep yours or replace if needed) ---
   function updateClock(){
