@@ -256,16 +256,27 @@
     </nav>
   </div>
 
-  <script>
-    function updateClock(){
-      const el = document.getElementById('clock');
-      const now = new Date();
-      const hh = String(now.getHours()).padStart(2,'0');
-      const mm = String(now.getMinutes()).padStart(2,'0');
-      el.textContent = `${hh}:${mm}`;
-    }
-    updateClock();
-    setInterval(updateClock, 1000 * 10);
-  </script>
+<script>
+  function updateClock(){
+    const el = document.getElementById('clock');
+    const now = new Date();
+
+    const time = now.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    const date = now.toLocaleDateString([], {
+      month: 'short',
+      day: '2-digit'
+    });
+
+    el.textContent = `${time} ${date}`;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000 * 10);
+</script>
+
 </body>
 </html>
