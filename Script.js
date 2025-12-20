@@ -63,3 +63,17 @@
   const saved = localStorage.getItem('wallpaper');
   if(saved) setWallpaper(saved);
 </script>
+
+function setWallpaper(url){
+  const img = new Image();
+  img.onload = () => {
+    document.body.style.backgroundImage = `url("${url}")`;
+    localStorage.setItem('wallpaper', url);
+
+    document.querySelectorAll('.wallpaper-item').forEach(item=>{
+      item.classList.toggle('selected', item.dataset.wall === url);
+    });
+  };
+  img.src = url;
+}
+
