@@ -1,0 +1,109 @@
+/* Wallpaper background */
+body{
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Window overlay */
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.18);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.overlay.show{ display: flex; }
+
+/* Wallpaper window */
+.window{
+  width: min(980px, 92vw);
+  height: min(650px, 82vh);
+  background: rgba(236, 248, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 22px;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.25);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+  position: relative;
+}
+
+/* Window title bar (mac-like) */
+.window-bar{
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+}
+
+.window-dots{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.dot{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+.dot.red{ background: #ff5f57; }
+.dot.yellow{ background: #febc2e; }
+.dot.green{ background: #28c840; }
+
+.window-title{
+  font-weight: 700;
+  color: rgba(0,0,0,0.65);
+  font-size: 14px;
+}
+
+.window-content{
+  padding: 18px;
+  height: calc(100% - 44px);
+  overflow: auto;
+}
+
+.window-content h1{
+  margin: 0 0 14px;
+  font-size: 44px;
+  letter-spacing: -0.02em;
+}
+
+/* Wallpaper grid */
+.wallpaper-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.wallpaper-item{
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.10);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.wallpaper-item:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.14);
+}
+
+.wallpaper-item img{
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Selected state */
+.wallpaper-item.selected{
+  outline: 4px solid rgba(0, 122, 255, 0.35);
+}
