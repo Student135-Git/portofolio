@@ -21,11 +21,30 @@ body::before{
   z-index: 0;
 }
 
-/* Make sure your UI sits above the overlay */
-.desktop, .topbar, .right-icons, .dock-wrap, .overlay{
+/* Your normal UI */
+.desktop,
+.topbar,
+.dock-wrap,
+.right-icons{
   position: relative;
   z-index: 1;
 }
+
+/* Wallpaper modal MUST be above everything */
+.overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.10);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay.show{
+  display: flex;
+}
+
 
 /* -----------------------------
    Modal overlay
