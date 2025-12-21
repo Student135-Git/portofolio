@@ -272,5 +272,63 @@ const saved=localStorage.getItem('wallpaper');
 if(saved) document.body.style.backgroundImage=`url("${saved}")`;
 </script>
 
+<script>
+  const overlay = document.getElementById('wallpaperOverlay');
+  const openBtn = document.getElementById('openWallpaper');
+  const closeBtn = document.getElementById('closeWallpaper');
+  const grid = document.getElementById('wallpaperGrid');
+
+  function setWallpaper(url){
+    // preload to avoid flashing
+    const img = new Image();
+    img.onload = () => {
+      document.body.style.backgroundImage = `url("${url}")`;
+      localStorage.setItem('wallpaper', url);
+
+      document.querySelectorAll('.wallpaper-item').forEach(item=>{
+        item.classList.toggle('selected', item.dataset.wall === url);
+      });
+    };
+    img.src = url;
+  }
+
+  function openChooser(){
+    overlay.classList.add('show');
+  }
+  function closeChooser(){
+    overlay.classList.remove('show');
+  }
+
+  // Open
+  openBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    openChooser();
+  });
+
+  // Close button (red dot)
+  closeBtn.addEventListener('click', closeChooser);
+
+  // Click outside closes
+  overlay.addEventListener('click', (e)=>{
+    if(e.target === overlay) closeChooser();
+  });
+
+  // ESC closes
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeChooser();
+  });
+
+  // Click wallpaper
+  grid.addEventListener('click', (e)=>{
+    const item = e.target.closest('.wallpaper-item');
+    if(!item) return;
+    setWallpaper(item.dataset.wall);
+  });
+
+  // Load saved wallpaper on refresh
+  const saved = localStorage.getItem('wallpaper');
+  if(saved) setWallpaper(saved);
+</script>
+
 </body>
 </html>
