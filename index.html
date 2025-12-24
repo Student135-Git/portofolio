@@ -1,204 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Your Name — Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name — Portfolio</title>
 
-<style>
-/* ---------------- Base ---------------- */
-*{ box-sizing:border-box; }
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  min-height:100vh;
-  background-image:url("Image/w1.jpg");
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-  transition: background-image 350ms ease;
-}
-
-/* soft OS overlay */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.45), transparent 55%),
-    radial-gradient(900px 600px at 85% 35%, rgba(0,140,255,.22), transparent 60%);
-  pointer-events:none;
-  z-index:0;
-}
-
-.desktop,
-.topbar,
-.dock-wrap,
-.right-icons {
-  position: relative;
-  z-index: 1;
-}
-
-.overlay{
-  position: fixed;
-  inset: 0;
-  z-index: 9999; /* MUST be higher */
-}
-
-
-/* ---------------- Top Bar ---------------- */
-.topbar{
-  position:fixed;
-  top:0;left:0;right:0;
-  height:56px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 18px;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(0,0,0,.06);
-}
-
-.topbar-left{ display:flex; gap:16px; align-items:center; }
-.menu a{
-  text-decoration:none;
-  color:#111;
-  padding:8px 10px;
-  border-radius:10px;
-}
-.menu a:hover{ background:rgba(0,0,0,.06); }
-
-.apple{ width:28px;height:28px; }
-.apple img{ width:100%;height:100%;object-fit:contain; }
-
-/* ---------------- Desktop ---------------- */
-.desktop{ padding:80px 24px 120px; }
-
-/* ---------------- Right Icons ---------------- */
-.right-icons{
-  position:fixed;
-  top:90px;
-  right:24px;
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-}
-.icon{
-  width:60px;height:60px;
-  background:#fff;
-  border-radius:16px;
-  display:grid;
-  place-items:center;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
-  transition:.15s;
-}
-.icon:hover{ transform:translateY(-3px); }
-
-/* ---------------- Dock ---------------- */
-.dock-wrap{
-  position:fixed;
-  left:0;right:0;bottom:18px;
-  display:flex;
-  justify-content:center;
-}
-.dock{
-  display:flex;
-  gap:14px;
-  padding:14px 18px;
-  background:rgba(255,255,255,.72);
-  backdrop-filter:blur(12px);
-  border-radius:22px;
-  box-shadow:0 18px 50px rgba(0,0,0,.18);
-}
-.dock a{
-  width:54px;height:54px;
-  background:#fff;
-  border-radius:16px;
-  display:grid;
-  place-items:center;
-  transition:.15s;
-}
-.dock a:hover{ transform:translateY(-6px) scale(1.06); }
-
-/* ---------------- Wallpaper Window ---------------- */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.1);
-  display:none;
-  align-items:center;
-  justify-content:center;
-}
-.overlay.show{ display:flex; }
-
-.window{
-  width:min(1000px,94vw);
-  height:min(700px,86vh);
-  border-radius:26px;
-  overflow:hidden;
-  background:linear-gradient(
-    180deg,
-    rgba(220,245,255,.86),
-    rgba(255,255,255,.75)
-  );
-  backdrop-filter:blur(18px) saturate(140%);
-  box-shadow:0 35px 110px rgba(0,0,0,.25);
-}
-
-.window-bar{
-  height:44px;
-  display:flex;
-  align-items:center;
-  padding:0 14px;
-}
-.window-dots{ display:flex; gap:8px; }
-.dot{
-  width:12px;height:12px;border-radius:50%;
-}
-.red{ background:#ff5f57; }
-.yellow{ background:#febc2e; }
-.green{ background:#28c840; }
-
-.window-content{
-  padding:18px;
-  height:calc(100% - 44px);
-  overflow:auto;
-}
-.window-content h1{
-  font-size:44px;
-  margin:0 0 16px;
-}
-
-/* wallpaper grid */
-.wallpaper-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:22px;
-}
-.wallpaper-item{
-  position:relative;
-  border-radius:18px;
-  overflow:hidden;
-  cursor:pointer;
-  box-shadow:0 12px 30px rgba(0,0,0,.12);
-  transition:.15s;
-}
-.wallpaper-item:hover{ transform:translateY(-4px); }
-.wallpaper-item img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-}
-.wallpaper-item.selected{
-  outline:4px solid rgba(0,120,255,.35);
-}
-
-/* ---------------- Responsive ---------------- */
-@media(max-width:720px){
-  .wallpaper-grid{ grid-template-columns:1fr; }
-}
-</style>
+  <!-- put your CSS file name here -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -220,89 +28,73 @@ body::before{
 
 <div class="dock-wrap">
   <nav class="dock">
-    <a href="#"><img src="Image/FinderOs.png" width="32"></a>
-    <a href="#"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg" width="32"></a>
+    <a href="#"><img src="Image/FinderOs.png" width="32" alt=""></a>
+    <a href="#"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg" width="32" alt=""></a>
   </nav>
 </div>
 
 <!-- Wallpaper window -->
-<div class="overlay" id="wallpaperOverlay">
-  <div class="window">
+<div class="overlay" id="wallpaperOverlay" aria-hidden="true">
+  <div class="window" role="dialog" aria-modal="true" aria-label="Wallpaper chooser">
     <div class="window-bar">
       <div class="window-dots">
-        <span class="dot red" id="closeWallpaper"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
+        <button class="dot red" id="closeWallpaper" aria-label="Close"></button>
+        <span class="dot yellow" aria-hidden="true"></span>
+        <span class="dot green" aria-hidden="true"></span>
       </div>
+      <div class="window-title">Wallpaper</div>
+      <div style="width:60px"></div>
     </div>
 
     <div class="window-content">
       <h1>Wallpaper</h1>
+
       <div class="wallpaper-grid" id="wallpaperGrid">
-  <div class="wallpaper-item" data-wall="Image/w1.jpg">
-    <img src="Image/w1.jpg" alt="Wallpaper 1">
-  </div>
+        <div class="wallpaper-item" data-wall="Image/w1.jpg">
+          <img src="Image/w1.jpg" alt="Wallpaper 1">
+          <span class="check">✓</span>
+        </div>
 
-  <div class="wallpaper-item" data-wall="Image/w2.jpg">
-    <img src="Image/w2.jpg" alt="Wallpaper 2">
-  </div>
+        <div class="wallpaper-item" data-wall="Image/w2.jpg">
+          <img src="Image/w2.jpg" alt="Wallpaper 2">
+          <span class="check">✓</span>
+        </div>
 
-  <div class="wallpaper-item" data-wall="Image/w3.jpg">
-    <img src="Image/w3.jpg" alt="Wallpaper 3">
+        <div class="wallpaper-item" data-wall="Image/w3.jpg">
+          <img src="Image/w3.jpg" alt="Wallpaper 3">
+          <span class="check">✓</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-  const overlay = document.getElementById('wallpaperOverlay');
-  const openBtn = document.getElementById('openWallpaper');
-  const closeBtn = document.getElementById('closeWallpaper');
-  const grid = document.getElementById('wallpaperGrid');
-
-  function setWallpaper(url){
-    const img = new Image();
-    img.onload = () => {
-      document.body.style.backgroundImage = `url("${url}")`;
-      localStorage.setItem('wallpaper', url);
-
-      document.querySelectorAll('.wallpaper-item').forEach(item=>{
-        item.classList.toggle('selected', item.dataset.wall === url);
-      });
-    };
-    img.src = url;
+  // ---------- Clock: "Time Month Day" ----------
+  const clockEl = document.getElementById('clock');
+  function updateClock(){
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const date = now.toLocaleDateString([], { month: 'short', day: '2-digit' });
+    clockEl.textContent = `${time} ${date}`;
   }
+  updateClock();
+  setInterval(updateClock, 1000 * 30);
 
-  openBtn.addEventListener('click', e=>{
-    e.preventDefault();
-    overlay.classList.add('show');
-  });
-
-  closeBtn.addEventListener('click', ()=>overlay.classList.remove('show'));
-
-  grid.addEventListener('click', e=>{
-    const item = e.target.closest('.wallpaper-item');
-    if(!item) return;
-    setWallpaper(item.dataset.wall);
-  });
-
-  const saved = localStorage.getItem('wallpaper');
-  if(saved) setWallpaper(saved);
-</script>
-
-
-<script>
+  // ---------- Wallpaper Chooser ----------
   const overlay = document.getElementById('wallpaperOverlay');
   const openBtn = document.getElementById('openWallpaper');
   const closeBtn = document.getElementById('closeWallpaper');
   const grid = document.getElementById('wallpaperGrid');
 
   function setWallpaper(url){
-    // preload to avoid flashing
+    // preload to avoid flash
     const img = new Image();
     img.onload = () => {
       document.body.style.backgroundImage = `url("${url}")`;
       localStorage.setItem('wallpaper', url);
 
-      document.querySelectorAll('.wallpaper-item').forEach(item=>{
+      document.querySelectorAll('.wallpaper-item').forEach(item => {
         item.classList.toggle('selected', item.dataset.wall === url);
       });
     };
@@ -311,41 +103,43 @@ body::before{
 
   function openChooser(){
     overlay.classList.add('show');
-  }
-  function closeChooser(){
-    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden', 'false');
   }
 
-  // Open
-  openBtn.addEventListener('click', (e)=>{
+  function closeChooser(){
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+
+  openBtn.addEventListener('click', (e) => {
     e.preventDefault();
     openChooser();
   });
 
-  // Close button (red dot)
   closeBtn.addEventListener('click', closeChooser);
 
-  // Click outside closes
-  overlay.addEventListener('click', (e)=>{
-    if(e.target === overlay) closeChooser();
+  // click outside window closes
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeChooser();
   });
 
   // ESC closes
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape') closeChooser();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('show')) closeChooser();
   });
 
-  // Click wallpaper
-  grid.addEventListener('click', (e)=>{
+  // click wallpaper card
+  grid.addEventListener('click', (e) => {
     const item = e.target.closest('.wallpaper-item');
-    if(!item) return;
+    if (!item) return;
     setWallpaper(item.dataset.wall);
   });
 
-  // Load saved wallpaper on refresh
-  const saved = localStorage.getItem('wallpaper');
-  if(saved) setWallpaper(saved);
+  // load saved wallpaper (or default)
+  const saved = localStorage.getItem('wallpaper') || "Image/w1.jpg";
+  setWallpaper(saved);
 </script>
 
 </body>
 </html>
+
