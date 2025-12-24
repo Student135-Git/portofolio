@@ -61,20 +61,26 @@ body::before{
 }
 .menu a:hover{ background:rgba(0,0,0,.06); }
 
-.apple{
-  width: 20px;       /* smaller */
-  height: 20px;
-  opacity: 0.75;     /* softer */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.topbar .apple{
+  width: 20px !important;
+  height: 20px !important;
+  flex: 0 0 auto;
+  opacity: 0.8;
 }
 
-.apple img{
-  width: 100%;
-  height: 100%;
+.topbar .apple img{
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
   object-fit: contain;
+  display: block;
 }
+
+
+<div class="apple">
+  <img src="Image/AppleLogo.png" alt="Apple" width="20" height="20">
+</div>
 
 
 /* ---------------- Desktop ---------------- */
