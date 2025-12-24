@@ -252,35 +252,42 @@ body::before{
   </div>
 </div>
 
-
 <script>
-/* clock */
-function updateClock(){
-  const now=new Date();
-  const time=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-  const date=now.toLocaleDateString([], {month:'short',day:'2-digit'});
-  clock.textContent=`${time} ${date}`;
-}
-updateClock();setInterval(updateClock,60000);
+  const overlay = document.getElementById('wallpaperOverlay');
+  const openBtn = document.getElementById('openWallpaper');
+  const closeBtn = document.getElementById('closeWallpaper');
+  const grid = document.getElementById('wallpaperGrid');
 
-/* wallpaper logic */
-const overlay=document.getElementById('wallpaperOverlay');
-openWallpaper.onclick=e=>{e.preventDefault();overlay.classList.add('show');}
-closeWallpaper.onclick=()=>overlay.classList.remove('show');
+  function setWallpaper(url){
+    const img = new Image();
+    img.onload = () => {
+      document.body.style.backgroundImage = `url("${url}")`;
+      localStorage.setItem('wallpaper', url);
 
-wallpaperGrid.onclick=e=>{
-  const item=e.target.closest('.wallpaper-item');
-  if(!item)return;
-  const url=item.dataset.wall;
-  document.body.style.backgroundImage=`url("${url}")`;
-  localStorage.setItem('wallpaper',url);
-  document.querySelectorAll('.wallpaper-item')
-    .forEach(i=>i.classList.toggle('selected',i===item));
-};
+      document.querySelectorAll('.wallpaper-item').forEach(item=>{
+        item.classList.toggle('selected', item.dataset.wall === url);
+      });
+    };
+    img.src = url;
+  }
 
-const saved=localStorage.getItem('wallpaper');
-if(saved) document.body.style.backgroundImage=`url("${saved}")`;
+  openBtn.addEventListener('click', e=>{
+    e.preventDefault();
+    overlay.classList.add('show');
+  });
+
+  closeBtn.addEventListener('click', ()=>overlay.classList.remove('show'));
+
+  grid.addEventListener('click', e=>{
+    const item = e.target.closest('.wallpaper-item');
+    if(!item) return;
+    setWallpaper(item.dataset.wall);
+  });
+
+  const saved = localStorage.getItem('wallpaper');
+  if(saved) setWallpaper(saved);
 </script>
+
 
 <script>
   const overlay = document.getElementById('wallpaperOverlay');
