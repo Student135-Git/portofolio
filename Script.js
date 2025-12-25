@@ -1,16 +1,36 @@
 <script>
-  // --- Clock (keep yours or replace if needed) ---
-  function updateClock(){
-    const el = document.getElementById('clock');
+  const clockEl = document.getElementById('clock');
+
+  function renderClock(showFullDate = false){
     const now = new Date();
 
-    const time = now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-    const date = now.toLocaleDateString([], { month:'short', day:'2-digit' });
+    const time = now.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
 
-    el.textContent = `${time} ${date}`;
+    const shortDate = now.toLocaleDateString([], {
+      month: 'short',
+      day: '2-digit'
+    });
+
+    const fullDate = now.toLocaleDateString([], {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    clockEl.textContent = showFullDate
+      ? `${time} • ${fullDate}`
+      : `${time} ${shortDate}`;
   }
-  updateClock();
-  setInterval(updateClock, 1000 * 10);
+
+  renderClock(false);
+  setInterval(() => renderClock(false), 1000 * 10);
+
+  clockEl.addEventListener('mouseenter', () => renderClock(true));
+  clockEl.addEventListener('mouseleave', () => renderClock(false));
 
   // --- Wallpaper chooser ---
   const overlay = document.getElementById('wallpaperOverlay');
