@@ -71,15 +71,29 @@
 
 <script>
   // ---------- Clock: "Time Month Day" ----------
+  <script>
   const clockEl = document.getElementById('clock');
+
   function updateClock(){
     const now = new Date();
-    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const date = now.toLocaleDateString([], { month: 'short', day: '2-digit' });
+
+    const time = now.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const date = now.toLocaleDateString([], {
+      month: 'short',
+      day: '2-digit'
+    });
+
     clockEl.textContent = `${time} ${date}`;
   }
+
   updateClock();
-  setInterval(updateClock, 1000 * 30);
+  setInterval(updateClock, 1000);
+</script>
+
 
   // ---------- Wallpaper Chooser ----------
   const overlay = document.getElementById('wallpaperOverlay');
