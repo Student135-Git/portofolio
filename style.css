@@ -244,3 +244,13 @@ body::before{
 @media (max-width:720px){
   .wallpaper-grid{ grid-template-columns:1fr; }
 }
+
+#clock{
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 120ms ease;
+}
+#clock:hover{
+  background: rgba(0,0,0,0.08);
+  cursor: default;
+}
