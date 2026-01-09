@@ -161,7 +161,8 @@ body::before {
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: 20px;
   max-width: 600px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: 40px;
   padding: 20px;
 }
 
@@ -595,6 +596,7 @@ body::before {
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     gap: 18px;
     padding: 16px;
+    margin-right: 20px;
   }
   
   .icon-image {
@@ -663,6 +665,7 @@ body::before {
   .desktop-icons {
     grid-template-columns: repeat(4, 1fr);
     gap: 14px;
+    margin-right: 12px;
   }
   
   .icon-image {
