@@ -57,13 +57,9 @@ body::before {
   z-index: 0;
 }
 
-/* Ensure interactive elements are above overlay */
-.desktop,
-.topbar,
-.dock-wrap,
+/* Ensure overlay appears above all other content */
 .overlay {
-  position: relative;
-  z-index: 1;
+  z-index: 9999;
 }
 
 /* ---------------- Top Bar ---------------- */
@@ -84,7 +80,7 @@ body::before {
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   
   border-bottom: 1px solid var(--border-light);
-  z-index: 1000;
+  z-index: 100;
 }
 
 .topbar-left {
@@ -162,9 +158,9 @@ body::before {
 /* Desktop Icons Grid */
 .desktop-icons {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 24px;
-  max-width: 800px;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 20px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -173,7 +169,7 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   text-decoration: none;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
@@ -189,9 +185,9 @@ body::before {
 
 /* Icon Image Container */
 .icon-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
   display: grid;
   place-items: center;
   
@@ -201,8 +197,8 @@ body::before {
   
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.12),
-    0 2px 6px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   
   transition: all 0.2s ease;
@@ -211,10 +207,10 @@ body::before {
 
 .desktop-icon:hover .icon-image {
   box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.16),
-    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.16),
+    0 4px 8px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .icon-image img {
@@ -231,14 +227,14 @@ body::before {
 /* Icon Label */
 .icon-label {
   color: #fff;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   text-align: center;
   text-shadow: 
     0 1px 3px rgba(0, 0, 0, 0.3),
     0 2px 8px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.01em;
-  max-width: 100px;
+  max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -284,7 +280,7 @@ body::before {
   display: flex;
   justify-content: center;
   pointer-events: none;
-  z-index: 900;
+  z-index: 100;
 }
 
 .dock {
@@ -596,19 +592,19 @@ body::before {
   }
   
   .desktop-icons {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 18px;
     padding: 16px;
   }
   
   .icon-image {
-    width: 70px;
-    height: 70px;
-    border-radius: 18px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
   }
   
   .icon-label {
-    font-size: 12px;
+    font-size: 11px;
   }
   
   .dock {
@@ -665,18 +661,18 @@ body::before {
   }
   
   .desktop-icons {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
   }
   
   .icon-image {
-    width: 64px;
-    height: 64px;
-    border-radius: 16px;
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
   }
   
   .icon-label {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
