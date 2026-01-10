@@ -267,10 +267,7 @@ body::before {
   border: 1px solid rgba(79, 172, 254, 0.3);
 }
 
-/* Chess.com icon - white background for logo visibility */
-.desktop-icon:first-child .icon-image {
-  background: rgba(255, 255, 255, 0.95);
-}
+/* Chess.com icon - keep default glassmorphism (no white override) */
 
 /* ---------------- Dock ---------------- */
 .dock-wrap {
